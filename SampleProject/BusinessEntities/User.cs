@@ -60,11 +60,19 @@ namespace BusinessEntities
 
         public void SetEmail(string email)
         {
-            if (string.IsNullOrEmpty(email))
+            try
             {
-                throw new ArgumentNullException("Name was not provided.");
+                if (string.IsNullOrEmpty(email))
+                {
+                    throw new ArgumentNullException("Email was not provided.");
+                }
+
+                _email = email;
             }
-            _email = email;
+            catch (Exception ex)
+            {
+                Console.WriteLine("Invalid input: " + ex.Message);
+            }
         }
 
         public void SetType(UserTypes type)
@@ -74,7 +82,11 @@ namespace BusinessEntities
 
         public void SetAge(int age)
         {
-            _email = _name;
+            if (age <= 0)
+            {
+                throw new ArgumentException("Age is invalid");
+            }
+            _age = age;
         }
 
         public void SetMonthlySalary(decimal? monthlySalary)
