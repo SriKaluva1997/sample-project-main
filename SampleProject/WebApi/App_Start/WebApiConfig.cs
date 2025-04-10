@@ -49,7 +49,7 @@ namespace WebApi
                                        "api/{controller}/{id}",
                                        new { id = RouteParameter.Optional }
                                       );
-
+            config.Filters.Add(new GlobalExceptionFilter());
             config.Filters.AddRange(new IFilter[]
                                     {
                                         new ContextInitializeAttribute()
